@@ -28,17 +28,22 @@ public class JFSucursal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        asa = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        SucursalComboBox = new javax.swing.JComboBox<>();
+        jButtonSucu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("SELECCIONE LA SUCURSAL");
 
-        asa.setEditable(true);
-        asa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yumbo", "Cali", "Palmira" }));
+        SucursalComboBox.setEditable(true);
+        SucursalComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yumbo", "Cali", "Palmira" }));
+        SucursalComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SucursalComboBoxActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Continuar");
+        jButtonSucu.setText("Continuar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,8 +57,8 @@ public class JFSucursal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(asa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
+                            .addComponent(SucursalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSucu))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -62,9 +67,9 @@ public class JFSucursal extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(57, 57, 57)
-                .addComponent(asa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SucursalComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(jButtonSucu)
                 .addGap(53, 53, 53))
         );
 
@@ -81,6 +86,10 @@ public class JFSucursal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SucursalComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SucursalComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SucursalComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,8 +127,8 @@ public class JFSucursal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> asa;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JComboBox<String> SucursalComboBox;
+    public javax.swing.JButton jButtonSucu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
