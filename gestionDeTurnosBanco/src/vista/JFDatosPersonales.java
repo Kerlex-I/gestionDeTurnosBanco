@@ -4,17 +4,44 @@
  */
 package vista;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javax.swing.event.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author elker
  */
-public class JFDatosPersonales extends javax.swing.JFrame {
+public class JFDatosPersonales extends javax.swing.JFrame{
 
     /**
      * Creates new form JFDatosPersonales
      */
     public JFDatosPersonales() {
+        
         initComponents();
+        // Agregar el mismo ActionListener al JCheckBox y a los campos de texto
+        boxDeclarar.addActionListener(habilitarBoton);
+        txtNumeroCedula.addActionListener(habilitarBoton);
+        txtNumeroCelular.addActionListener(habilitarBoton);
+        
+        // Agregar un KeyListener para capturar cambios de texto en los campos de cédula y celular
+        txtNumeroCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e){
+                habilitarBoton.actionPerformed(null);
+            }
+        });
+        txtNumeroCelular.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent e){
+                habilitarBoton.actionPerformed(null);
+            }
+        });
+
     }
 
     /**
@@ -31,11 +58,11 @@ public class JFDatosPersonales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNumeroCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
+        txtNumeroCelular = new javax.swing.JTextField();
+        boxDeclarar = new javax.swing.JCheckBox();
+        btnContinuarDatosPersonales = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,9 +76,15 @@ public class JFDatosPersonales extends javax.swing.JFrame {
 
         jLabel4.setText("Ingrese su número de celular");
 
-        jCheckBox1.setText("Declaro que conozco y acepto la política de protección de datos personales.");
+        boxDeclarar.setText("Declaro que conozco y acepto la política de protección de datos personales.");
 
-        jButton1.setText("Continuar");
+        btnContinuarDatosPersonales.setText("Continuar");
+        btnContinuarDatosPersonales.setEnabled(false);
+        btnContinuarDatosPersonales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarDatosPersonalesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,7 +92,7 @@ public class JFDatosPersonales extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(jButton1)
+                .addComponent(btnContinuarDatosPersonales)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
@@ -71,12 +104,12 @@ public class JFDatosPersonales extends javax.swing.JFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNumeroCedula)
+                                .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1))
                         .addGap(190, 190, 190))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(boxDeclarar)
                         .addGap(59, 59, 59))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,15 +124,15 @@ public class JFDatosPersonales extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumeroCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jCheckBox1)
+                .addComponent(boxDeclarar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnContinuarDatosPersonales)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
@@ -116,6 +149,14 @@ public class JFDatosPersonales extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnContinuarDatosPersonalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarDatosPersonalesActionPerformed
+        // TODO add your handling code here:
+        JFSucursal newframe = new JFSucursal();
+        
+        newframe.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnContinuarDatosPersonalesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,17 +192,33 @@ public class JFDatosPersonales extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox boxDeclarar;
+    private javax.swing.JButton btnContinuarDatosPersonales;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtNumeroCedula;
+    private javax.swing.JTextField txtNumeroCelular;
     // End of variables declaration//GEN-END:variables
+
+    // Método para verificar si se debe habilitar el botón
+    ActionListener habilitarBoton = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            boolean isBoxSelected = boxDeclarar.isSelected();
+            boolean isCedulaNotEmpty = !txtNumeroCedula.getText().trim().isEmpty();
+            boolean isCelularNotEmpty = !txtNumeroCelular.getText().trim().isEmpty();
+            
+            //Habilitar o deshabilitar el boton dependiendo de las condiciones
+            
+            btnContinuarDatosPersonales.setEnabled(isBoxSelected && isCedulaNotEmpty && isCelularNotEmpty);
+        }
+    };
+        
 }

@@ -29,7 +29,7 @@ public class JFSucursal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnContinuarSucursal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -38,7 +38,12 @@ public class JFSucursal extends javax.swing.JFrame {
         jComboBox1.setEditable(true);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yumbo", "Cali", "Palmira" }));
 
-        jButton1.setText("Continuar");
+        btnContinuarSucursal.setText("Continuar");
+        btnContinuarSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarSucursalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -53,7 +58,7 @@ public class JFSucursal extends javax.swing.JFrame {
                         .addGap(167, 167, 167)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
+                            .addComponent(btnContinuarSucursal))))
                 .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -64,7 +69,7 @@ public class JFSucursal extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnContinuarSucursal)
                 .addGap(53, 53, 53))
         );
 
@@ -81,6 +86,14 @@ public class JFSucursal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnContinuarSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarSucursalActionPerformed
+        JFTramite newframe = new JFTramite();
+        
+        newframe.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_btnContinuarSucursalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +131,7 @@ public class JFSucursal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnContinuarSucursal;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

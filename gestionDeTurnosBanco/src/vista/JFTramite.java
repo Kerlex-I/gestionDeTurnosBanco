@@ -29,7 +29,7 @@ public class JFTramite extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        btnContinuarTramite = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,7 +42,12 @@ public class JFTramite extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Continuar");
+        btnContinuarTramite.setText("Continuar");
+        btnContinuarTramite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarTramiteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,7 +64,7 @@ public class JFTramite extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(191, 191, 191)
-                        .addComponent(jButton4)))
+                        .addComponent(btnContinuarTramite)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -70,7 +75,7 @@ public class JFTramite extends javax.swing.JFrame {
                 .addGap(88, 88, 88)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
-                .addComponent(jButton4)
+                .addComponent(btnContinuarTramite)
                 .addContainerGap(113, Short.MAX_VALUE))
         );
 
@@ -91,6 +96,10 @@ public class JFTramite extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void btnContinuarTramiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarTramiteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnContinuarTramiteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,7 +137,7 @@ public class JFTramite extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnContinuarTramite;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

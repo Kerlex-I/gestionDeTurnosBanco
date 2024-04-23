@@ -31,7 +31,7 @@ public class JFUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnSolicitarTurno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +43,12 @@ public class JFUsuario extends javax.swing.JFrame {
 
         jLabel4.setText("3. Selecciona el servicio que deseas realizar");
 
-        jButton1.setText("Solicita tu turno");
+        btnSolicitarTurno.setText("Solicita tu turno");
+        btnSolicitarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarTurnoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -52,7 +57,7 @@ public class JFUsuario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(btnSolicitarTurno)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4)
                         .addComponent(jLabel3)
@@ -72,7 +77,7 @@ public class JFUsuario extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSolicitarTurno)
                 .addGap(86, 86, 86))
         );
 
@@ -91,6 +96,12 @@ public class JFUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSolicitarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarTurnoActionPerformed
+        // TODO add your handling code here:
+        VentanaD.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSolicitarTurnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,9 +137,12 @@ public class JFUsuario extends javax.swing.JFrame {
             }
         });
     }
+    JFDatosPersonales VentanaD = new JFDatosPersonales();
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSolicitarTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -24,18 +24,20 @@ public class GestionDeTurnosBanco {
         
         
         usuario.setCedula("100000");
-        usuario.setPrioridad("Preñada");
+        usuario.setPrioridad("Ninguno");
         usuario.setTelefono("311121");
         
         
         
-        turno = controladorturno.crearTurno(usuario, "Cancela un producto", usuario.getPrioridad());
+        turno = controladorturno.crearTurno(usuario, "Tramites en caja", usuario.getPrioridad());
         
         String numero = Integer.toString(turno.getNumero());
         String letra = turno.getLetra();
         
+        String cedula = turno.getUsuario().getCedula();
         
-        System.out.println(letra + numero);
+        
+        System.out.println(letra + numero + " " + cedula);
         // TODO code application logic here
     }
     
