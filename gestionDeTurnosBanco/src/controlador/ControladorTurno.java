@@ -30,49 +30,119 @@ public class ControladorTurno {
         tipoTramite.add("G");
         
         for(int i = 0; i < 7; i++){
-            numero.add(0);
+            numero.add(-1);
         }
         
     }
     
-    public Turno crearTurno(Usuario usuario, String tipo_tramite){
-        
-
-        String letra;
-        
-        letra = asignarLetra(tipo_tramite, usuario.getPrioridad());
-        
-        return null;
-    }
+//    public Turno crearTurno(Usuario usuario, String tipo_tramite){
+//        
+//        Turno turnito = new Turno();
+//        
+//
+//        String letra;
+//        
+//        letra = asignarLetra(tipo_tramite, usuario.getPrioridad());
+//        turnito.setLetra(letra);
+//        
+//        
+//        
+//        
+//        
+//        return null;
+//    }
+//    
+//    public String asignarLetra(String tipo_tramite, String prioridad){
+//        String tipo = "";
+//        if("tramite en caja".equals(tipo_tramite)){
+//            if(prioridad == "Tercera edad" && prioridad == "Preñada"){
+//                tipo = tipoTramite.get(0);
+//            }
+//            else if("Manquito".equals(prioridad)){
+//                tipo = tipoTramite.get(1);
+//            }
+//            else if("Ninguno".equals(prioridad)){
+//                tipo = tipoTramite.get(2);
+//            }
+//        }
+//        else if("Sacar un producto".equals(tipo_tramite)){
+//            tipo = tipoTramite.get(3);
+//        }
+//        else if("Ayuda con tus productos".equals(tipo_tramite)){
+//            tipo = tipoTramite.get(4);
+//        }
+//        else if("Cancela un producto".equals(tipo_tramite)){
+//            tipo = tipoTramite.get(5);
+//        }
+//        else{
+//            tipo = tipoTramite.get(6);
+//        }
+//              
+//        return tipo;
+//    }
+//    
+//    public int asignarNumero(String tipo){
+//        
+//        int numero = 0;
+//        
+//        
+//        return numero;
+//    }
     
-    public String asignarLetra(String tipo_tramite, String prioridad){
+    public Turno crearTurno(Usuario usuario, String tipo_tramite, String prioridad){
+        
+        Turno turnito = new Turno();
+                
+        int index = 0;
+        int numerito = 0;
+        
         String tipo = "";
         if("tramite en caja".equals(tipo_tramite)){
-            if(prioridad == "Tercera edad" && prioridad == "Preñada"){
-                tipo = tipoTramite.get(0);
+            if(prioridad == "Tercera edad" || prioridad == "Preñada"){
+                index = 0;
+                tipo = tipoTramite.get(index);
+                numerito = numero.get(index) + 1;
+                
             }
             else if("Manquito".equals(prioridad)){
-                tipo = tipoTramite.get(1);
+                index = 1;
+                tipo = tipoTramite.get(index);
+                numerito = numero.get(index) + 1;
             }
             else if("Ninguno".equals(prioridad)){
-                tipo = tipoTramite.get(2);
+                index = 2;
+                tipo = tipoTramite.get(index);
+                numerito = numero.get(index) + 1;
             }
         }
         else if("Sacar un producto".equals(tipo_tramite)){
-            tipo = tipoTramite.get(3);
+            index = 3;
+            tipo = tipoTramite.get(index);
+            numerito = numero.get(index) + 1;
         }
         else if("Ayuda con tus productos".equals(tipo_tramite)){
-            tipo = tipoTramite.get(4);
+            index = 4;
+            tipo = tipoTramite.get(index);
+            numerito = numero.get(index) + 1;
+            
         }
         else if("Cancela un producto".equals(tipo_tramite)){
-            tipo = tipoTramite.get(5);
+            index = 5;
+            tipo = tipoTramite.get(index);
+            numerito = numero.get(index) + 1;
         }
         else{
-            tipo = tipoTramite.get(6);
+            index = 6;
+            tipo = tipoTramite.get(index);
+            numerito = numero.get(index);
         }
-              
-        return tipo;
+        
+        turnito.setLetra(tipo);
+        turnito.setNumero(numerito);
+        turnito.setTipo_tramite(tipo_tramite);
+        turnito.setUsuario(usuario);
+        turnito.setEstado(true);
+        return turnito;
     }
-    
     
 }

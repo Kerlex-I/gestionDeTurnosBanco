@@ -13,15 +13,17 @@ public class Turno {
     Usuario usuario;
     String tipo_tramite;
     int numero;
+    String letra;
     boolean estado;
 
     public Turno() {
     }
 
-    public Turno(Usuario usuario, String tipo_tramite, int numero, boolean estado) {
+    public Turno(Usuario usuario, String tipo_tramite, int numero, String letra, boolean estado) {
         this.usuario = usuario;
         this.tipo_tramite = tipo_tramite;
         this.numero = numero;
+        this.letra = letra;
         this.estado = estado;
     }
 
@@ -49,6 +51,14 @@ public class Turno {
         this.numero = numero;
     }
 
+    public String getLetra() {
+        return letra;
+    }
+
+    public void setLetra(String letra) {
+        this.letra = letra;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -56,12 +66,4 @@ public class Turno {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-    @Override
-    public String toString() {
-        return "Turno{" + "usuario=" + usuario + ", tipo_tramite=" + tipo_tramite + ", numero=" + numero + ", estado=" + estado + '}';
-    }
-    
-    
-    
 }
