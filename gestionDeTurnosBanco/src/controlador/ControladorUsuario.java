@@ -4,8 +4,11 @@
  */
 package controlador;
 
+import java.util.ArrayList;
+import java.util.List;
 import modelo.Usuario;
 import vista.JFDatosPersonales;
+import vista.JFTramite;
 
 
 /**
@@ -13,10 +16,32 @@ import vista.JFDatosPersonales;
  * @author elker
  */
 public class ControladorUsuario {
-    JFDatosPersonales datos_personales;
+    JFDatosPersonales datospersonales;
     
     public ControladorUsuario(){
         
+    }
+    
+    public void crearUsuario(){
+        Usuario usuario = new Usuario();
+        
+        usuario.setCedula(datospersonales.getCedula());
+        usuario.setPrioridad(datospersonales.getPrioridad());
+        usuario.setTelefono(datospersonales.getCelular());
+        
+        JFTramite tramite = new JFTramite(usuario);
+        tramite.setVisible(true);
+        
+        
+              
+    }
+    
+    public JFDatosPersonales getJFdatos_personales(){
+        return datospersonales;
+    }
+    
+    public void setJFdatos_personales(JFDatosPersonales datospersonales){
+        this.datospersonales = datospersonales;
     }
     
     

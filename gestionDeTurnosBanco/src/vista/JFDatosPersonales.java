@@ -6,6 +6,8 @@ package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import controlador.ControladorTurno;
+import controlador.ControladorUsuario;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import javax.swing.event.*;
@@ -20,9 +22,15 @@ public class JFDatosPersonales extends javax.swing.JFrame{
     /**
      * Creates new form JFDatosPersonales
      */
+    ControladorTurno ct = new ControladorTurno();
+    ControladorUsuario cu = new ControladorUsuario();
+    
     public JFDatosPersonales() {
         
         initComponents();
+        
+        cu.setJFdatos_personales(this);
+        ct.setJFdatos_personales(this);
         // Agregar el mismo ActionListener al JCheckBox y a los campos de texto
         boxDeclarar.addActionListener(habilitarBoton);
         txtNumeroCedula.addActionListener(habilitarBoton);
@@ -43,7 +51,22 @@ public class JFDatosPersonales extends javax.swing.JFrame{
         });
 
     }
-
+    
+    public String getTipoDocumento(){
+        return cboxTipoDocumento.getSelectedItem().toString();
+    }
+    public String getCedula(){
+        return txtNumeroCedula.getText();
+    }
+    public String getCelular(){
+        return txtNumeroCelular.getText();
+    }
+    public String getPrioridad(){
+        return cboxPrioridad.getSelectedItem().toString();
+    }
+    
+    //spikes /timeboxing
+    //incluir: 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,13 +79,15 @@ public class JFDatosPersonales extends javax.swing.JFrame{
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboxTipoDocumento = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         txtNumeroCedula = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtNumeroCelular = new javax.swing.JTextField();
         boxDeclarar = new javax.swing.JCheckBox();
         btnContinuarDatosPersonales = new javax.swing.JButton();
+        cboxPrioridad = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +95,7 @@ public class JFDatosPersonales extends javax.swing.JFrame{
 
         jLabel2.setText("Seleccione su tipo de documento");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de ciudadanía", "Cedula Extranjera", "Tarjeta de identidad", "Nit" }));
+        cboxTipoDocumento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cedula de ciudadanía", "Cedula Extranjera", "Tarjeta de identidad", "Nit" }));
 
         jLabel3.setText("Ingrese su número de documento");
 
@@ -86,30 +111,37 @@ public class JFDatosPersonales extends javax.swing.JFrame{
             }
         });
 
+        cboxPrioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ninguno", "Embarazo", "Tercera edad", "Discapacidad" }));
+
+        jLabel5.setText("Condición de prioridad");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(240, 240, 240)
-                .addComponent(btnContinuarDatosPersonales)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel4)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNumeroCedula)
-                                .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cboxPrioridad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cboxTipoDocumento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtNumeroCedula, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNumeroCelular, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addGap(190, 190, 190))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(boxDeclarar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(162, 162, 162)
+                                .addComponent(btnContinuarDatosPersonales)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boxDeclarar, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(59, 59, 59))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,7 +152,7 @@ public class JFDatosPersonales extends javax.swing.JFrame{
                 .addGap(41, 41, 41)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboxTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -129,11 +161,15 @@ public class JFDatosPersonales extends javax.swing.JFrame{
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(txtNumeroCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(cboxPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(boxDeclarar)
                 .addGap(18, 18, 18)
                 .addComponent(btnContinuarDatosPersonales)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,10 +188,9 @@ public class JFDatosPersonales extends javax.swing.JFrame{
 
     private void btnContinuarDatosPersonalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarDatosPersonalesActionPerformed
         // TODO add your handling code here:
-        JFSucursal newframe = new JFSucursal();
-        
-        newframe.setVisible(true);
+        cu.crearUsuario();
         this.dispose();
+        
     }//GEN-LAST:event_btnContinuarDatosPersonalesActionPerformed
 
     /**
@@ -197,11 +232,13 @@ public class JFDatosPersonales extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox boxDeclarar;
     private javax.swing.JButton btnContinuarDatosPersonales;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboxPrioridad;
+    private javax.swing.JComboBox<String> cboxTipoDocumento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtNumeroCedula;
     private javax.swing.JTextField txtNumeroCelular;
