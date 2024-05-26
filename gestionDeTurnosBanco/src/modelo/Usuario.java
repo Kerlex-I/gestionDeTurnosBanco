@@ -4,6 +4,8 @@
  */
 package modelo;
 
+import java.sql.ResultSet;
+import java.util.HashMap;
 /**
  *
  * @author elker
@@ -60,8 +62,8 @@ public class Usuario {
     
     
     public void crearUsuario(){
-    Conexion c = new Conexion();
-    c.ejecutar("insert into usuario (cedula,telefono,prioridad,sucursal_id)values('"+cedula+ "','" + telefono + "','" +prioridad+"',"+ sucursal_id + ");");
+        Conexion c = new Conexion();
+        c.ejecutar("insert into usuario (cedula,telefono,prioridad,sucursal_id)values('"+cedula+ "','" + telefono + "','" +prioridad+"',"+ sucursal_id + ");");
     
     }
     @Override

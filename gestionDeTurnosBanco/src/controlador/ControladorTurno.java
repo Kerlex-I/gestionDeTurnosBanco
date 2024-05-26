@@ -36,11 +36,14 @@ public class ControladorTurno {
         tipoTramite.add("F");
         tipoTramite.add("G");
         
+        Turno consultar = new Turno();
+        
+        consultar.cargarPrioridades(numeros);
+        consultar.cargarTramites(numeros);
+        
     }
     
-    public Turno crearTurno(Usuario usuario){
-        
-        
+    public Turno crearTurno(Usuario usuario){        
         
         Turno turnito = new Turno();
         String tipo_tramite = "";
@@ -128,14 +131,14 @@ public class ControladorTurno {
         else if("Cancela un producto".equals(tipo_tramite)){
             index = 5;
             tipo = tipoTramite.get(index);
-            if(!numeros.containsKey("Embarazo")){               
+            if(!numeros.containsKey("Cancela un producto")){               
                 numeros.put("Embarazo", 0);
-                turnoActual = numeros.get("Embarazo");
+                turnoActual = numeros.get("Cancela un producto");
             }
             else{
-                numerito = numeros.get("Embarazo") + 1;
-                numeros.put("Embarazo", numerito);
-                turnoActual = numeros.get("Embarazo");
+                numerito = numeros.get("Cancela un producto") + 1;
+                numeros.put("Cancela un producto", numerito);
+                turnoActual = numeros.get("Cancela un producto");
             }
         }
         else{
@@ -160,6 +163,7 @@ public class ControladorTurno {
         turnito.setEstado(true);
         turnito.setHora_solicitud("03:51");
         turnito.setEstado(false);
+        turnito.setPrioridad(usuario.getPrioridad());
         
         usuario.crearUsuario();
         turnito.crearTurno();
