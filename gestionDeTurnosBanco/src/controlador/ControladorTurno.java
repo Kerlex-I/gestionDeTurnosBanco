@@ -17,89 +17,7 @@ import java.util.HashMap;
  */
 public class ControladorTurno {
     
-//    JFTramite tramite;
-//    JFDatosPersonales datospersonales;
-//    ArrayList<String> tipoTramite = new ArrayList<>();
-//    ArrayList<Integer> numero = new ArrayList<>();
-//    
-//    public ControladorTurno(){
-//        tipoTramite.add("A");
-//        tipoTramite.add("B");
-//        tipoTramite.add("C");
-//        tipoTramite.add("D");
-//        tipoTramite.add("E");
-//        tipoTramite.add("F");
-//        tipoTramite.add("G");
-//        
-//        for(int i = 0; i < 7; i++){
-//            numero.add(-1);
-//        }
-//        
-//    }
-//    
-//    public Turno crearTurno(Usuario usuario, String tipo_tramite, String prioridad){
-//        
-//        Turno turnito = new Turno();
-//                
-//        int index;
-//        int numerito = 0;
-//        
-//        String tipo = "";
-//        if("Tramites en caja".equals(tipo_tramite)){
-//            if(prioridad == "Tercera edad" || prioridad == "Embarazo"){
-//                index = 0;
-//                tipo = tipoTramite.get(index);
-//                numerito = numero.get(index) + 1;
-//                
-//            }
-//            else if("Discapacidad".equals(prioridad)){
-//                index = 1;
-//                tipo = tipoTramite.get(index);
-//                numerito = numero.get(index) + 1;
-//            }
-//            else if("Ninguno".equals(prioridad)){
-//                index = 2;
-//                tipo = tipoTramite.get(index);
-//                numerito = numero.get(index) + 1;
-//            }
-//        }
-//        else if("Sacar un producto".equals(tipo_tramite)){
-//            index = 3;
-//            tipo = tipoTramite.get(index);
-//            numerito = numero.get(index) + 1;
-//        }
-//        else if("Ayuda con tus productos".equals(tipo_tramite)){
-//            index = 4;
-//            tipo = tipoTramite.get(index);
-//            numerito = numero.get(index) + 1;
-//            
-//        }
-//        else if("Cancela un producto".equals(tipo_tramite)){
-//            index = 5;
-//            tipo = tipoTramite.get(index);
-//            numerito = numero.get(index) + 1;
-//        }
-//        else{
-//            index = 6;
-//            tipo = tipoTramite.get(index);
-//            numerito = numero.get(index) + 1;
-//        }
-//        
-//        turnito.setLetra(tipo);
-//        turnito.setNumero(numerito);
-//        turnito.setTipo_tramite(tipo_tramite);
-//        turnito.setUsuario(usuario);
-//        turnito.setEstado(true);
-//        return turnito;
-//    }
-//    
-//    public JFDatosPersonales getJFdatos_personales(){
-//        return datospersonales;
-//    }
-//    
-//    public void setJFdatos_personales(JFDatosPersonales datospersonales){
-//        this.datospersonales = datospersonales;
-//    }
+
     JFTramite tramite;
     JFDatosPersonales datospersonales;
     ControladorUsuario cu;
@@ -117,11 +35,6 @@ public class ControladorTurno {
         tipoTramite.add("E");
         tipoTramite.add("F");
         tipoTramite.add("G");
-        
-//        for(int i = 0; i < 7; i++){
-//            numero.add(-1);
-//        }
-        
         
     }
     
@@ -239,11 +152,20 @@ public class ControladorTurno {
             }
         }
         
+        
+        
+        turnito.setCedula(usuario.getCedula());
         turnito.setLetra(tipo);
         turnito.setNumero(turnoActual);
         turnito.setTipo_tramite(tipo_tramite);
         turnito.setUsuario(usuario);
         turnito.setEstado(true);
+        turnito.setHora_solicitud("03:51");
+        turnito.setEstado(false);
+        
+        usuario.crearUsuario();
+        turnito.crearTurno();
+        
         return turnito;
     }
     

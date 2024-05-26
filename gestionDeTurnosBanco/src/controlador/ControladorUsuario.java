@@ -28,6 +28,9 @@ public class ControladorUsuario {
         usuario.setCedula(datospersonales.getCedula());
         usuario.setPrioridad(datospersonales.getPrioridad());
         usuario.setTelefono(datospersonales.getCelular());
+        usuario.setSucursal_id(2);
+        
+        
         
         JFTramite tramite = new JFTramite(usuario);
         tramite.setVisible(true);
