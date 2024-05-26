@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 public class Turno {
     
     Usuario usuario;
-    String cedula;
     String tipo_tramite;
     int numero;
     String letra;
@@ -24,9 +23,8 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Usuario usuario, String cedula, String tipo_tramite, int numero, String letra, boolean estado, String hora_solicitud, int tiempo_espera) {
+    public Turno(Usuario usuario, String tipo_tramite, int numero, String letra, boolean estado, String hora_solicitud, int tiempo_espera) {
         this.usuario = usuario;
-        this.cedula = cedula;
         this.tipo_tramite = tipo_tramite;
         this.numero = numero;
         this.letra = letra;
@@ -92,20 +90,12 @@ public class Turno {
         this.tiempo_espera = tiempo_espera;
         
     }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
     
     
     
     public void crearTurno(){
     Conexion c = new Conexion();
-    c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud)values('"+cedula+ "','" + tipo_tramite + "'," +numero+",'"+letra+"',"+estado+",'"+hora_solicitud+ "');");
+    c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"',"+estado+",'"+hora_solicitud+ "');");
     
     }
 

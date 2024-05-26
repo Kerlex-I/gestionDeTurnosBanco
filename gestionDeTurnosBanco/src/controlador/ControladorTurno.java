@@ -153,8 +153,6 @@ public class ControladorTurno {
         }
         
         
-        
-        turnito.setCedula(usuario.getCedula());
         turnito.setLetra(tipo);
         turnito.setNumero(turnoActual);
         turnito.setTipo_tramite(tipo_tramite);
