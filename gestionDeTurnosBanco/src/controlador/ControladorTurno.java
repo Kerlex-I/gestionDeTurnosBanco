@@ -46,11 +46,10 @@ public class ControladorTurno {
     public Turno crearTurno(Usuario usuario){        
         
         Turno turnito = new Turno();
-        String tipo_tramite = "";
-        String prioridad = "";
+        String tipo_tramite;
+        String prioridad;
         
-        prioridad = usuario.getPrioridad();
-        
+        prioridad = usuario.getPrioridad();       
         tipo_tramite = tramite.getTramite();
                        
         int index;
@@ -132,7 +131,7 @@ public class ControladorTurno {
             index = 5;
             tipo = tipoTramite.get(index);
             if(!numeros.containsKey("Cancela un producto")){               
-                numeros.put("Embarazo", 0);
+                numeros.put("Cancela un producto", 0);
                 turnoActual = numeros.get("Cancela un producto");
             }
             else{
@@ -141,11 +140,11 @@ public class ControladorTurno {
                 turnoActual = numeros.get("Cancela un producto");
             }
         }
-        else{
+        else if ("Pedir documentos".equals(tipo_tramite)){
             index = 6;
             tipo = tipoTramite.get(index);
             if(!numeros.containsKey("Pedir documentos")){               
-                numeros.put("Embarazo", 0);
+                numeros.put("Pedir documentos", 0);
                 turnoActual = numeros.get("Pedir documentos");
             }
             else{
@@ -164,6 +163,8 @@ public class ControladorTurno {
         turnito.setHora_solicitud("03:51");
         turnito.setEstado(false);
         turnito.setPrioridad(usuario.getPrioridad());
+        turnito.setPrioridad(usuario.getPrioridad());
+        
         
         usuario.crearUsuario();
         turnito.crearTurno();

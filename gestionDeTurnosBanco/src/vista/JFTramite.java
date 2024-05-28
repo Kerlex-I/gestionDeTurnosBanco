@@ -5,6 +5,7 @@
 package vista;
 import modelo.Turno;
 import modelo.Usuario;
+import controlador.ControladorSucursal;
 import controlador.ControladorTurno;
 
 /**
@@ -17,12 +18,14 @@ public class JFTramite extends javax.swing.JFrame {
      * Creates new form JFTramite
      */
     ControladorTurno ct = new ControladorTurno();
+    ControladorSucursal cs = new ControladorSucursal();
     JFDatosPersonales dt;
     Usuario user = new Usuario();
     public JFTramite(Usuario usuario) {
         
         user = usuario;
         ct.setJFtramite(this);
+        cs.setJFtramite(this);
         initComponents();
     }
     
@@ -38,6 +41,9 @@ public class JFTramite extends javax.swing.JFrame {
     }
     public String getTramite(){
         return cboxTramite.getSelectedItem().toString();
+    }
+    public String getSucursal(){
+        return cBoxSucursal.getSelectedItem().toString();
     }
     
     
@@ -55,7 +61,7 @@ public class JFTramite extends javax.swing.JFrame {
         cboxTramite = new javax.swing.JComboBox<>();
         btnFinalizarTurno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cBoxSucursal = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,7 +115,12 @@ public class JFTramite extends javax.swing.JFrame {
 
         jLabel2.setText("SELECCIONE LA SUCURSAL");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cali", "Yumbo" }));
+        cBoxSucursal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cali", "Yumbo" }));
+        cBoxSucursal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBoxSucursalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,7 +133,7 @@ public class JFTramite extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(109, 109, 109)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cBoxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -133,7 +144,7 @@ public class JFTramite extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jLabel2)
                 .addGap(60, 60, 60)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cBoxSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -149,12 +160,17 @@ public class JFTramite extends javax.swing.JFrame {
         JFUsuario newframe = new JFUsuario();
         Turno turnito = new Turno();
         turnito = ct.crearTurno(user);
+        cs.sucursalSeleccionada(user);
         System.out.println(turnito.getLetra()+ Integer.toString(turnito.getNumero()));
         
         newframe.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_btnFinalizarTurnoActionPerformed
+
+    private void cBoxSucursalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxSucursalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBoxSucursalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,8 +209,8 @@ public class JFTramite extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinalizarTurno;
+    private javax.swing.JComboBox<String> cBoxSucursal;
     private javax.swing.JComboBox<String> cboxTramite;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

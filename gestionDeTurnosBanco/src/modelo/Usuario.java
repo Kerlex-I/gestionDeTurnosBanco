@@ -63,9 +63,17 @@ public class Usuario {
     
     public void crearUsuario(){
         Conexion c = new Conexion();
-        c.ejecutar("insert into usuario (cedula,telefono,prioridad,sucursal_id)values('"+cedula+ "','" + telefono + "','" +prioridad+"',"+ sucursal_id + ");");
+        c.ejecutar("insert into usuario (cedula,telefono,prioridad)values('"+cedula+ "','" + telefono + "','" +prioridad+"');");
     
     }
+    
+    public void actualizarIDUsuario(int id_sucursal, String cedulau){
+        Conexion c = new Conexion();
+        String sql = "UPDATE usuario SET sucursal_id = " +id_sucursal+  " where cedula = '" + cedulau + "'";
+        c.ejecutar(sql);
+    }
+    
+    
     @Override
     public String toString() {
         return "Usuario{" + "cedula=" + cedula + ", telefono=" + telefono + ", prioridad=" + prioridad + ", sucursal=" + sucursal_id + '}';
