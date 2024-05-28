@@ -4,6 +4,7 @@
  */
 package gestiondeturnosbanco;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.time.Period;
@@ -22,8 +23,11 @@ public class GestionDeTurnosBanco {
         // TODO code application logic here
         Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
         System.out.println(timestamp);
-        LocalTime time = LocalTime.of(0, 0); // Obtiene la hora actual 
-        System.out.println(time);
+        LocalTime time = LocalTime.now(); // Obtiene la hora actual 
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        
+        String horaFormateada = time.format(formatter);
+        System.out.println(horaFormateada);
     }
         
     

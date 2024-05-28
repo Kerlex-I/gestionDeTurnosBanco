@@ -10,6 +10,8 @@ import modelo.Usuario;
 import vista.JFDatosPersonales;
 import vista.JFTramite;
 import java.util.HashMap;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -22,6 +24,8 @@ public class ControladorTurno {
     JFDatosPersonales datospersonales;
     ControladorUsuario cu;
     ArrayList<String> tipoTramite = new ArrayList<>();
+    LocalTime tiempo;
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
     public static HashMap<String, Integer> numeros = new HashMap<>();
 //    public final int[] numero = {0,0,0,0,0,0,0};
 //    ArrayList<Integer> numero = new ArrayList<>();
@@ -48,9 +52,12 @@ public class ControladorTurno {
         Turno turnito = new Turno();
         String tipo_tramite;
         String prioridad;
+        String horaFormateada;
         
         prioridad = usuario.getPrioridad();       
         tipo_tramite = tramite.getTramite();
+        tiempo = LocalTime.now();
+        horaFormateada = tiempo.format(formato);
                        
         int index;
         int numerito = 0;
@@ -160,7 +167,7 @@ public class ControladorTurno {
         turnito.setTipo_tramite(tipo_tramite);
         turnito.setUsuario(usuario);
         turnito.setEstado(true);
-        turnito.setHora_solicitud("03:51");
+        turnito.setHora_solicitud(horaFormateada);
         turnito.setEstado(false);
         turnito.setPrioridad(usuario.getPrioridad());
         turnito.setPrioridad(usuario.getPrioridad());
