@@ -19,7 +19,7 @@ public class Turno {
     String tipo_tramite;
     int numero;
     String letra;
-    boolean estado;
+    String estado;
     String hora_solicitud;
     int tiempo_espera;
     String prioridad;
@@ -27,7 +27,7 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Usuario usuario, String tipo_tramite, int numero, String letra, boolean estado, String hora_solicitud, int tiempo_espera, String prioridad) {
+    public Turno(Usuario usuario, String tipo_tramite, int numero, String letra, String estado, String hora_solicitud, int tiempo_espera, String prioridad) {
         this.usuario = usuario;
         this.tipo_tramite = tipo_tramite;
         this.numero = numero;
@@ -73,11 +73,11 @@ public class Turno {
         this.letra = letra;
     }
 
-    public boolean isEstado() {
+    public String isEstado() {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
@@ -109,7 +109,7 @@ public class Turno {
  
     public void crearTurno(){
     Conexion c = new Conexion();
-    c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud,prioridad)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"',"+estado+",'"+hora_solicitud+ "','" + prioridad + "');");
+    c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud,prioridad)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"','"+estado+"','"+hora_solicitud+ "','" + prioridad + "');");
     
     }
     

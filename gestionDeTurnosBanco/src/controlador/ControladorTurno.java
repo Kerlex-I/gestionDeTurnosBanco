@@ -165,9 +165,8 @@ public class ControladorTurno {
         turnito.setNumero(turnoActual);
         turnito.setTipo_tramite(tipo_tramite);
         turnito.setUsuario(usuario);
-        turnito.setEstado(true);
         turnito.setHora_solicitud(horaFormateada);
-        turnito.setEstado(false);
+        turnito.setEstado("Pendiente");
         turnito.setPrioridad(usuario.getPrioridad());
         turnito.setPrioridad(usuario.getPrioridad());
                
