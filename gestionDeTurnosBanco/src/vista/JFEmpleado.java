@@ -25,7 +25,7 @@ public class JFEmpleado extends javax.swing.JFrame {
         dtm.addColumn("ID_PERSONA");
         dtm.addColumn("TRÁMITE");
         dtm.addColumn("TIEMPO DE ESPERA");
-        ce.mostrarTurnos();
+        ce.hiloTurnos();
     }
     
     //agrega fila de datos de productos
