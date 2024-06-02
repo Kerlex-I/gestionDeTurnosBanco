@@ -60,7 +60,7 @@ public class ControladorTurno {
         horaFormateada = tiempo.format(formato);
                        
         int index;
-        int numerito = 0;
+        int numerito;
         int turnoActual = 0;
         
         String tipo = "";
@@ -161,7 +161,6 @@ public class ControladorTurno {
             }
         }
         
-        
         turnito.setLetra(tipo);
         turnito.setNumero(turnoActual);
         turnito.setTipo_tramite(tipo_tramite);
@@ -171,8 +170,7 @@ public class ControladorTurno {
         turnito.setEstado(false);
         turnito.setPrioridad(usuario.getPrioridad());
         turnito.setPrioridad(usuario.getPrioridad());
-        
-        
+               
         usuario.crearUsuario();
         turnito.crearTurno();
         

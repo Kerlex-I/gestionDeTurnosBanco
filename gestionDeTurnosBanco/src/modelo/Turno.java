@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.time.*;
 import java.util.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashMap;
 /**
  *
@@ -105,8 +106,7 @@ public class Turno {
         this.prioridad = prioridad;
     }
     
-    
-    
+ 
     public void crearTurno(){
     Conexion c = new Conexion();
     c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud,prioridad)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"',"+estado+",'"+hora_solicitud+ "','" + prioridad + "');");
@@ -146,6 +146,32 @@ public class Turno {
             }
         }catch(java.sql.SQLException e){
         }
+    }
+    
+    public ArrayList<Turno> listarEnTabla(){
+        
+        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno";
+        ArrayList<Turno> turnos = new ArrayList<>();
+        Conexion c = new Conexion();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                Turno t = new Turno();
+                Usuario u = new Usuario();
+                t.setUsuario(u);
+                u.setCedula(rs.getString("cc_cliente"));
+                t.setTipo_tramite(rs.getString("tipo_tramite"));
+                t.setTiempo_espera(rs.getInt("tiempo_espera"));
+                
+                turnos.add(t);                
+            }
+            
+        } catch (java.sql.SQLException e) {
+        }
+        
+        return turnos;
+        
     }
     @Override
     public String toString() {

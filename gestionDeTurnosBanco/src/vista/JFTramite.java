@@ -28,8 +28,7 @@ public class JFTramite extends javax.swing.JFrame {
         cs.setJFtramite(this);
         initComponents();
     }
-    
-    
+        
     public String getCedula(){
         return dt.getCedula();
     }

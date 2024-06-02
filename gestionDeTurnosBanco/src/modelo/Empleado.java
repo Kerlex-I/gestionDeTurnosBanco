@@ -10,14 +10,16 @@ package modelo;
 public class Empleado {
    
     int credencial;
+    int turnosAtendidos;
     String contrasena;
     String nombre;
 
     public Empleado() {
     }
 
-    public Empleado(int credencial, String contrasena, String nombre) {
+    public Empleado(int credencial, int turnosAtendidos, String contrasena, String nombre) {
         this.credencial = credencial;
+        this.turnosAtendidos = turnosAtendidos;
         this.contrasena = contrasena;
         this.nombre = nombre;
     }
@@ -46,8 +48,16 @@ public class Empleado {
         this.nombre = nombre;
     }
 
+    public int getTurnosAtendidos() {
+        return turnosAtendidos;
+    }
+
+    public void setTurnosAtendidos(int turnosAtendidos) {
+        this.turnosAtendidos = turnosAtendidos;
+    }
+
     @Override
     public String toString() {
-        return "Empleado{" + "credencial=" + credencial + ", contrasena=" + contrasena + ", nombre=" + nombre + '}';
+        return "Empleado{" + "credencial=" + credencial + ", turnosAtendidos=" + turnosAtendidos + ", contrasena=" + contrasena + ", nombre=" + nombre + '}';
     }  
 }
