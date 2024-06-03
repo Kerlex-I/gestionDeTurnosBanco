@@ -15,6 +15,7 @@ import java.util.HashMap;
  */
 public class Turno {
     
+    int id_turno;
     Usuario usuario;
     String tipo_tramite;
     int numero;
@@ -27,7 +28,8 @@ public class Turno {
     public Turno() {
     }
 
-    public Turno(Usuario usuario, String tipo_tramite, int numero, String letra, String estado, String hora_solicitud, int tiempo_espera, String prioridad) {
+    public Turno(int id_turno, Usuario usuario, String tipo_tramite, int numero, String letra, String estado, String hora_solicitud, int tiempo_espera, String prioridad) {
+        this.id_turno = id_turno;
         this.usuario = usuario;
         this.tipo_tramite = tipo_tramite;
         this.numero = numero;
@@ -37,9 +39,6 @@ public class Turno {
         this.tiempo_espera = tiempo_espera;
         this.prioridad = prioridad;
     }
-
-    
-
 
     public Usuario getUsuario() {
         return usuario;
@@ -105,14 +104,23 @@ public class Turno {
     public void setPrioridad(String prioridad) {
         this.prioridad = prioridad;
     }
+
+    public int getId_turno() {
+        return id_turno;
+    }
+
+    public void setId_turno(int id_turno) {
+        this.id_turno = id_turno;
+    }
     
- 
+    // Inserta un turno solicitado en la base de datos
     public void crearTurno(){
     Conexion c = new Conexion();
     c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud,prioridad)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"','"+estado+"','"+hora_solicitud+ "','" + prioridad + "');");
     
     }
     
+    //Carga los turnos ya generados en la base de datos
     public void cargarPrioridades(HashMap<String, Integer> numeros){
         String sql = "SELECT" +
 "    CASE" +
@@ -147,36 +155,10 @@ public class Turno {
         }catch(java.sql.SQLException e){
         }
     }
-    
-    public ArrayList<Turno> listarEnTabla(){
-        
-        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno";
-        ArrayList<Turno> turnos = new ArrayList<>();
-        Conexion c = new Conexion();
-        ResultSet rs = c.ejecutarConsulta(sql);
-        
-        try {
-            while(rs.next()){
-                Turno t = new Turno();
-                Usuario u = new Usuario();
-                t.setUsuario(u);
-                u.setCedula(rs.getString("cc_cliente"));
-                t.setTipo_tramite(rs.getString("tipo_tramite"));
-                t.setTiempo_espera(rs.getInt("tiempo_espera"));
-                
-                turnos.add(t);                
-            }
-            
-        } catch (java.sql.SQLException e) {
-        }
-        
-        return turnos;
-        
-    }
-    
+    // Muestra los datos en el modulo de Caja
     public ArrayList<Turno> listarEnTablaCaja(){
         
-        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno WHERE tipo_tramite = 'Tramites en caja'";
+        String sql = "SELECT id_turno,cc_cliente,tipo_tramite,tiempo_espera,numero,letra FROM turno WHERE tipo_tramite = 'Tramites en caja' and estado = 'Pendiente'";
         ArrayList<Turno> turnos = new ArrayList<>();
         Conexion c = new Conexion();
         ResultSet rs = c.ejecutarConsulta(sql);
@@ -184,11 +166,14 @@ public class Turno {
         try {
             while(rs.next()){
                 Turno t = new Turno();
+                t.setId_turno(rs.getInt("id_turno"));
                 Usuario u = new Usuario();
                 t.setUsuario(u);
                 u.setCedula(rs.getString("cc_cliente"));
                 t.setTipo_tramite(rs.getString("tipo_tramite"));
                 t.setTiempo_espera(rs.getInt("tiempo_espera"));
+                t.setLetra(rs.getString("letra"));
+                t.setNumero(rs.getInt("numero"));          
                 
                 turnos.add(t);                
             }
@@ -196,13 +181,12 @@ public class Turno {
         } catch (java.sql.SQLException e) {
         }
         
-        return turnos;
-        
+        return turnos;        
     }
-    
+    // Muestra los turnos en el modulo de Asesor
     public ArrayList<Turno> listarEnTablaAsesor(){
         
-        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno WHERE tipo_tramite != 'Tramites en caja'";
+        String sql = "SELECT id_turno,cc_cliente,tipo_tramite,tiempo_espera,numero,letra FROM turno WHERE tipo_tramite != 'Tramites en caja' and estado = 'Pendiente'";
         ArrayList<Turno> turnos = new ArrayList<>();
         Conexion c = new Conexion();
         ResultSet rs = c.ejecutarConsulta(sql);
@@ -211,24 +195,47 @@ public class Turno {
             while(rs.next()){
                 Turno t = new Turno();
                 Usuario u = new Usuario();
+                t.setId_turno(rs.getInt("id_turno"));
                 t.setUsuario(u);
                 u.setCedula(rs.getString("cc_cliente"));
                 t.setTipo_tramite(rs.getString("tipo_tramite"));
                 t.setTiempo_espera(rs.getInt("tiempo_espera"));
+                t.setLetra(rs.getString("letra"));
+                t.setNumero(rs.getInt("numero"));              
                 
                 turnos.add(t);                
             }
-            
+        } catch (java.sql.SQLException e) {
+        }      
+        return turnos;        
+    }
+    
+    // Actualiza un estado del turno
+    public void actualizarEstadoTurno(){
+        Conexion c = new Conexion();
+        c.ejecutar("UPDATE turno SET estado = '"+ this.estado + "' WHERE id_turno="+this.id_turno);
+    }
+    
+    // Nos retorna un estado de cualquier turno cuando sea necesario
+    public String retornarEstadoTurno(){
+        Conexion c = new Conexion();
+        String estadoTurno = null;
+        String sql = "SELECT estado FROM turno WHERE id_turno = " + this.id_turno;
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                estadoTurno = rs.getString("estado");
+            }        
         } catch (java.sql.SQLException e) {
         }
-        
-        return turnos;
-        
+
+        return estadoTurno;
     }
+    
+
     @Override
     public String toString() {
-        return "Turno{" + "usuario=" + usuario.toString() + ", tipo_tramite=" + tipo_tramite + ", numero=" + numero + ", letra=" + letra + ", estado=" + estado + ", hora_solicitud=" + hora_solicitud + ", tiempo_espera=" + tiempo_espera + '}';
-    }
-    
-    
+        return "Turno{" + "id_turno=" + id_turno + ", usuario=" + usuario + ", tipo_tramite=" + tipo_tramite + ", numero=" + numero + ", letra=" + letra + ", estado=" + estado + ", hora_solicitud=" + hora_solicitud + ", tiempo_espera=" + tiempo_espera + ", prioridad=" + prioridad + '}';
+    }    
 }

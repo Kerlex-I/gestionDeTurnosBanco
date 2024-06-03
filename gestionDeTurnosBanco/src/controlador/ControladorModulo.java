@@ -5,6 +5,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import vista.JFEmpleado;
 import vista.JFEmpleadoA;
 import modelo.Turno;
@@ -17,6 +18,7 @@ public class ControladorModulo {
     
     JFEmpleado empleadoc;
     JFEmpleadoA empleadoa;
+    ControladorTurno ct = new ControladorTurno();
 
     public ControladorModulo() {
     }
@@ -27,7 +29,7 @@ public class ControladorModulo {
         ArrayList<Turno> turnos = t.listarEnTablaCaja();
         
         for(Turno turn: turnos){
-            String datos[] = {turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera())};
+            String datos[] = {String.valueOf(turn.getId_turno()), turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera()), turn.getLetra() + String.valueOf(turn.getNumero())};
             empleadoc.agregarFila(datos);
         }
     }
@@ -37,7 +39,7 @@ public class ControladorModulo {
         ArrayList<Turno> turnos = t.listarEnTablaAsesor();
         
         for(Turno turn: turnos){
-            String datos[] = {turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera())};
+            String datos[] = {String.valueOf(turn.getId_turno()), turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera()), turn.getLetra() + String.valueOf(turn.getNumero())};
             empleadoa.agregarFila(datos);
         }
     }
@@ -50,6 +52,40 @@ public class ControladorModulo {
     public void mostrarTurnosA(){
         HiloA hilo = new HiloA(this);
         hilo.start();
+    }
+  
+    public void llamarTurnoCaja(){
+        
+        if(empleadoc.hayDatos()){
+            ct.actualizarEstado(empleadoc.getIdDeTabla());
+            String turno;
+            String tramite;
+        
+            turno = empleadoc.getTurnoTabla();
+            empleadoc.setLblTurnoActual(turno);
+            tramite = empleadoc.getTramiteTabla();
+            empleadoc.setLblTramiteActual(tramite);
+        }else{
+            JOptionPane.showMessageDialog(empleadoc, "No hay turnos en fila", "Error", 0);
+        }
+ 
+    }
+    public void llamarTurnoAsesor(){
+        
+        if(empleadoa.hayDatos()){
+            ct.actualizarEstado(empleadoa.getIdDeTabla());
+            String turno;
+            String tramite;
+        
+            turno = empleadoa.getTurnoTabla();
+            empleadoa.setLblTurnoActual(turno);
+            tramite = empleadoa.getTramiteTabla();
+            empleadoa.setLblTramiteActual(tramite);
+        }else{
+            JOptionPane.showMessageDialog(empleadoc, "No hay turnos en fila", "Error", 0);
+        }
+        
+        
     }
     
     public JFEmpleado getJFEmpleado(){

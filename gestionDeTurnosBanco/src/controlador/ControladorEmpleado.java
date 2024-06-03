@@ -19,19 +19,6 @@ public class ControladorEmpleado {
         
     }
     
-    public void mostrarTurnos(){
-        empleado.limpiarTabla();
-        Turno t = new Turno();
-        ArrayList<Turno> turnos = t.listarEnTabla();
-        
-        for(Turno turn : turnos){
-            String datos[] = {turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera())};
-            empleado.agregarFila(datos);
-        }
-    }
-    
-    
-    
     public JFEmpleado getJFEmpleado(){
         return empleado;
     }

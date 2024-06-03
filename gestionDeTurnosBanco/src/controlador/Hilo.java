@@ -24,7 +24,7 @@ public class Hilo extends Thread{
             
             cm.abrirModuloCaja();
             try {
-                sleep(5000);
+                sleep(1000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
             }

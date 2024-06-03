@@ -40,6 +40,14 @@ public class ControladorLogin {
         
         return tipoModulo;
     }
+    
+    public int retornarModulo(){
+        Empleado encontrarEmpleado = retornarEmpleadoIniciado();
+        int idModulo = encontrarEmpleado.getModulo();
+        
+        return idModulo;
+    }
+    
     public JFLogin getJFLogin(){
         return login;
     }

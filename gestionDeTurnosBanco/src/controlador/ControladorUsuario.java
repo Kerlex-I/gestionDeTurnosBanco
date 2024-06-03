@@ -31,10 +31,7 @@ public class ControladorUsuario {
         
         
         JFTramite tramite = new JFTramite(usuario);
-        tramite.setVisible(true);
-        
-        
-              
+        tramite.setVisible(true);       
     }
     
     public JFDatosPersonales getJFdatos_personales(){

@@ -36,7 +36,13 @@ public class TurnoProceso {
     public void setId_modulo(int id_modulo) {
         this.id_modulo = id_modulo;
     }
-
+    
+//    public void crearUsuario(){
+//        Conexion c = new Conexion();
+//        c.ejecutar("insert into usuario ()values('"+cedula+ "','" + telefono + "','" +prioridad+"');");
+//    
+//    }
+    
     @Override
     public String toString() {
         return "TurnoProceso{" + "id_turno=" + id_turno + ", id_modulo=" + id_modulo + '}';

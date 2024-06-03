@@ -22,13 +22,10 @@ public class ControladorTurno {
 
     JFTramite tramite;
     JFDatosPersonales datospersonales;
-    ControladorUsuario cu;
     ArrayList<String> tipoTramite = new ArrayList<>();
     LocalTime tiempo;
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
     public static HashMap<String, Integer> numeros = new HashMap<>();
-//    public final int[] numero = {0,0,0,0,0,0,0};
-//    ArrayList<Integer> numero = new ArrayList<>();
     
     public ControladorTurno(){
       
@@ -174,6 +171,24 @@ public class ControladorTurno {
         turnito.crearTurno();
         
         return turnito;
+    }
+    
+    public void actualizarEstado(int id){
+        Turno t = new Turno();
+
+        t.setId_turno(id);
+        String estado = t.retornarEstadoTurno();
+        String estadoActualizado;
+        
+        if(estado.equals("Pendiente")){
+            estadoActualizado = "Llamado";
+            t.setEstado(estadoActualizado);
+            t.actualizarEstadoTurno();
+        }
+        else if(estado.equals("Llamado")){
+            
+        }
+        
     }
     
     public JFDatosPersonales getJFdatos_personales(){
