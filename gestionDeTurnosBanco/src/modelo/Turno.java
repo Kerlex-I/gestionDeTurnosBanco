@@ -173,6 +173,58 @@ public class Turno {
         return turnos;
         
     }
+    
+    public ArrayList<Turno> listarEnTablaCaja(){
+        
+        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno WHERE tipo_tramite = 'Tramites en caja'";
+        ArrayList<Turno> turnos = new ArrayList<>();
+        Conexion c = new Conexion();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                Turno t = new Turno();
+                Usuario u = new Usuario();
+                t.setUsuario(u);
+                u.setCedula(rs.getString("cc_cliente"));
+                t.setTipo_tramite(rs.getString("tipo_tramite"));
+                t.setTiempo_espera(rs.getInt("tiempo_espera"));
+                
+                turnos.add(t);                
+            }
+            
+        } catch (java.sql.SQLException e) {
+        }
+        
+        return turnos;
+        
+    }
+    
+    public ArrayList<Turno> listarEnTablaCajaAsesor(){
+        
+        String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno WHERE tipo_tramite != 'Tramites en caja'";
+        ArrayList<Turno> turnos = new ArrayList<>();
+        Conexion c = new Conexion();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                Turno t = new Turno();
+                Usuario u = new Usuario();
+                t.setUsuario(u);
+                u.setCedula(rs.getString("cc_cliente"));
+                t.setTipo_tramite(rs.getString("tipo_tramite"));
+                t.setTiempo_espera(rs.getInt("tiempo_espera"));
+                
+                turnos.add(t);                
+            }
+            
+        } catch (java.sql.SQLException e) {
+        }
+        
+        return turnos;
+        
+    }
     @Override
     public String toString() {
         return "Turno{" + "usuario=" + usuario.toString() + ", tipo_tramite=" + tipo_tramite + ", numero=" + numero + ", letra=" + letra + ", estado=" + estado + ", hora_solicitud=" + hora_solicitud + ", tiempo_espera=" + tiempo_espera + '}';
