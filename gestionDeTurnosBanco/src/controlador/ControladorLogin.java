@@ -18,7 +18,7 @@ public class ControladorLogin {
     
     public boolean validarInicioSesion(){
         
-          Empleado encontrarEmpleado = retornarEmpleadoIniciado();
+        Empleado encontrarEmpleado = retornarEmpleadoIniciado();
  
         return encontrarEmpleado != null;        
     }

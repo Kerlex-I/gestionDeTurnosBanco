@@ -30,10 +30,7 @@ public class ControladorEmpleado {
         }
     }
     
-    public void hiloTurnos(){
-        Hilo hilo = new Hilo(this);
-        hilo.start();
-    }
+    
     
     public JFEmpleado getJFEmpleado(){
         return empleado;

@@ -6,15 +6,16 @@ package controlador;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author elker
  */
-public class Hilo extends Thread{
+public class HiloA extends Thread{
     
     ControladorModulo cm;
-    public Hilo( ControladorModulo cm){
-        this.cm= cm;       
+    public HiloA( ControladorModulo cm){
+        this.cm= cm;  
     }
     
     @Override
@@ -22,7 +23,7 @@ public class Hilo extends Thread{
         
         while(true){
             
-            cm.abrirModuloCaja();
+            cm.abrirModuloAsesor();
             try {
                 sleep(5000);
             } catch (InterruptedException ex) {

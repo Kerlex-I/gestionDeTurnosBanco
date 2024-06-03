@@ -4,8 +4,10 @@
  */
 package controlador;
 
+import java.util.ArrayList;
 import vista.JFEmpleado;
 import vista.JFEmpleadoA;
+import modelo.Turno;
 
 /**
  *
@@ -13,24 +15,48 @@ import vista.JFEmpleadoA;
  */
 public class ControladorModulo {
     
-    JFEmpleado empleado;
+    JFEmpleado empleadoc;
     JFEmpleadoA empleadoa;
 
     public ControladorModulo() {
     }
     
     public void abrirModuloCaja(){
+        empleadoc.limpiarTabla();
+        Turno t = new Turno();
+        ArrayList<Turno> turnos = t.listarEnTablaCaja();
         
+        for(Turno turn: turnos){
+            String datos[] = {turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera())};
+            empleadoc.agregarFila(datos);
+        }
     }
     public void abrirModuloAsesor(){
+        empleadoa.limpiarTabla();
+        Turno t = new Turno();
+        ArrayList<Turno> turnos = t.listarEnTablaAsesor();
         
+        for(Turno turn: turnos){
+            String datos[] = {turn.getUsuario().getCedula(), turn.getTipo_tramite(), String.valueOf(turn.getTiempo_espera())};
+            empleadoa.agregarFila(datos);
+        }
+    }
+    
+    public void mostrarTurnosC(){
+        Hilo hilo = new Hilo(this);
+        hilo.start();
+    }
+    
+    public void mostrarTurnosA(){
+        HiloA hilo = new HiloA(this);
+        hilo.start();
     }
     
     public JFEmpleado getJFEmpleado(){
-        return empleado;
+        return empleadoc;
     }
     public void setJFEmpleado(JFEmpleado empleado){
-        this.empleado = empleado;
+        this.empleadoc = empleado;
     }
     public JFEmpleadoA getJFEmpleadoA(){
         return empleadoa;

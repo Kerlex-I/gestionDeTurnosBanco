@@ -200,7 +200,7 @@ public class Turno {
         
     }
     
-    public ArrayList<Turno> listarEnTablaCajaAsesor(){
+    public ArrayList<Turno> listarEnTablaAsesor(){
         
         String sql = "SELECT cc_cliente,tipo_tramite,tiempo_espera FROM turno WHERE tipo_tramite != 'Tramites en caja'";
         ArrayList<Turno> turnos = new ArrayList<>();
