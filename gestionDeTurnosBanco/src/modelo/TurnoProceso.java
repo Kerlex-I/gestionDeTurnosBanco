@@ -5,6 +5,7 @@
 package modelo;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -74,8 +75,30 @@ public class TurnoProceso {
             }        
         } catch (java.sql.SQLException e) {
         }
-        
+        c.cerrarSesion();
         return id;
+    }
+    
+    public ArrayList<TurnoProceso> mostrarPantalla(){
+        Conexion c = new Conexion();
+        String sql = "SELECT * FROM turno_proceso" + " ORDER BY hora_proceso DESC LIMIT 10";
+        ArrayList<TurnoProceso> turnosProceso = new ArrayList<>();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                TurnoProceso tp = new TurnoProceso();
+                
+                tp.setId_turno(rs.getInt("id_turno"));
+                tp.setId_modulo(rs.getInt("id_modulo"));
+                tp.setHora_proceso(rs.getString("hora_proceso"));
+                
+                turnosProceso.add(tp);                
+            }
+        } catch (java.sql.SQLException e) {
+        }
+        c.cerrarSesion();
+        return turnosProceso;
     }
     
     @Override

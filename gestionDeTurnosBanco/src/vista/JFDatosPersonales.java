@@ -8,10 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import controlador.ControladorTurno;
 import controlador.ControladorUsuario;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import javax.swing.event.*;
-import javax.swing.JOptionPane;
 
 /**
  *

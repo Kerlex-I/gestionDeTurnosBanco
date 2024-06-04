@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vista;
-import controlador.ControladorEmpleado;
 import controlador.ControladorModulo;
 import javax.swing.table.DefaultTableModel;
 /**

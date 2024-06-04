@@ -13,7 +13,6 @@ import modelo.Turno;
 import modelo.TurnoProceso;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
 /**
  *
  * @author elker
