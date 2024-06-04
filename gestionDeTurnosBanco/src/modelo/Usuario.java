@@ -74,6 +74,28 @@ public class Usuario {
         c.cerrarSesion();
     }
     
+    public boolean estaRegistrado(){
+        String sql = "SELECT * FROM usuario WHERE cedula = '" + this.cedula + "'";
+        Conexion c = new Conexion();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        
+        try {
+            while(rs.next()){
+                c.cerrarSesion();
+                return true;
+            }           
+        } catch (java.sql.SQLException e) {
+        }
+        c.cerrarSesion();
+        return false;
+    }
+    
+    public void eliminarUsuario(){
+        Conexion c = new Conexion();
+        c.ejecutar("DELETE FROM usuario WHERE cedula='"+this.cedula + "'");
+        c.cerrarSesion();
+    }
+    
     
     @Override
     public String toString() {

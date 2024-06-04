@@ -160,7 +160,6 @@ public class JFTramite extends javax.swing.JFrame {
         Turno turnito = new Turno();
         ct.crearTurno(user);
         cs.sucursalSeleccionada(user);
-        System.out.println(turnito.getLetra()+ Integer.toString(turnito.getNumero()));
         
         newframe.setVisible(true);
         this.dispose();

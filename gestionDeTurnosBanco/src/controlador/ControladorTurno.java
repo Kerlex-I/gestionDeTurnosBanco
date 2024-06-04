@@ -166,8 +166,14 @@ public class ControladorTurno {
         turnito.setEstado("Pendiente");
         turnito.setPrioridad(usuario.getPrioridad());
         turnito.setPrioridad(usuario.getPrioridad());
-               
-        usuario.crearUsuario();
+        
+        if(usuario.estaRegistrado()){
+            usuario.eliminarUsuario();
+            usuario.crearUsuario();
+        }else{
+            usuario.crearUsuario();
+        }
+        
         turnito.crearTurno();
         
     }

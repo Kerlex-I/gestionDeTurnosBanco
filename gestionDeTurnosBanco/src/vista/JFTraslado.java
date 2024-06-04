@@ -5,6 +5,7 @@
 
 package vista;
 import controlador.ControladorModulo;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -86,6 +87,9 @@ public class JFTraslado extends javax.swing.JFrame {
     private void btnTrasladarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrasladarActionPerformed
         // TODO add your handling code here:
         cm.trasladarTurno(id_modulo);
+        JOptionPane.showMessageDialog(this, "Trasladado con éxito", "Exito", 1);
+        this.dispose();
+        
     }//GEN-LAST:event_btnTrasladarActionPerformed
 
     /**

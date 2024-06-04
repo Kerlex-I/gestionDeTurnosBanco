@@ -98,6 +98,7 @@ public class Empleado {
                 empleado.setModulo(rs.getInt("modulo"));
                 empleado.setSucursal(rs.getInt("sucursal"));
                 empleado.setCredencial(rs.getString("credencial"));
+                c.cerrarSesion();
                 return empleado;
             }
         } catch (java.sql.SQLException e) {

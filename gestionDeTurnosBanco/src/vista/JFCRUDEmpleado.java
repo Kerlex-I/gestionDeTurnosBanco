@@ -327,6 +327,7 @@ public class JFCRUDEmpleado extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
         ce.registrarEmpleado();
+        JOptionPane.showMessageDialog(this, "Registrado correctamente", "Exito", 1);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void txtIngresoCredencialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresoCredencialActionPerformed
@@ -373,6 +374,7 @@ public class JFCRUDEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(ce.validarEmpleado()){
             ce.eliminarEmpleado();
+            JOptionPane.showMessageDialog(this, "Eliminado correctamente", "Exito", 1);
         }else{
             JOptionPane.showMessageDialog(this, "Usuario no encontrado", "Error", 0);
         }
