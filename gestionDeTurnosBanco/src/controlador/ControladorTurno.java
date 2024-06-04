@@ -44,7 +44,7 @@ public class ControladorTurno {
         
     }
     
-    public Turno crearTurno(Usuario usuario){        
+    public void crearTurno(Usuario usuario){        
         
         Turno turnito = new Turno();
         String tipo_tramite;
@@ -170,7 +170,6 @@ public class ControladorTurno {
         usuario.crearUsuario();
         turnito.crearTurno();
         
-        return turnito;
     }
     
     public void actualizarEstado(int id){
@@ -186,9 +185,19 @@ public class ControladorTurno {
             t.actualizarEstadoTurno();
         }
         else if(estado.equals("Llamado")){
-            
+            estadoActualizado = "Pendiente";
+            t.setEstado(estadoActualizado);
+            t.actualizarEstadoTurno();
         }
         
+    }
+    
+    public void actualizarTramite(int id, String tramite){
+        Turno t = new Turno();
+        
+        t.setId_turno(id);
+        t.setTipo_tramite(tramite);
+        t.actualizarTramite();
     }
     
     public JFDatosPersonales getJFdatos_personales(){

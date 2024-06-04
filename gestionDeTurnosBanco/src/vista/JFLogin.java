@@ -143,12 +143,14 @@ public class JFLogin extends javax.swing.JFrame {
         if(cl.validarInicioSesion()){
             JOptionPane.showMessageDialog(this, "Ingresado con exito", "Exito", 1);
             if(cl.retornarTipoDeModulo().equals("caja")){
-                JFEmpleado empleadoCaja = new JFEmpleado();
+                int modulo = cl.retornarModulo();
+                JFEmpleado empleadoCaja = new JFEmpleado(modulo);
                 empleadoCaja.setVisible(true);
                 this.dispose();
             }
             else if(cl.retornarTipoDeModulo().equals("asesor")){
-                JFEmpleadoA empleadoAsesor = new JFEmpleadoA();
+                int modulo = cl.retornarModulo();
+                JFEmpleadoA empleadoAsesor = new JFEmpleadoA(modulo);
                 empleadoAsesor.setVisible(true);
                 this.dispose();
             }

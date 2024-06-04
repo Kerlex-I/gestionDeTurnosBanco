@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.time.Period;
+import java.time.Duration;
+
 
 /**
  *
@@ -28,6 +30,17 @@ public class GestionDeTurnosBanco {
         
         String horaFormateada = time.format(formatter);
         System.out.println(horaFormateada);
+        LocalTime holallegada = LocalTime.of(23, 22);
+        LocalTime horaDeSalida = LocalTime.parse(horaFormateada);
+        
+        Duration duracion = Duration.between(horaDeSalida, holallegada);
+        
+        long horas = duracion.toHours();
+        long minutos = duracion.toMinutes() ;
+        long segundos = duracion.toSeconds();
+        
+        System.out.println("Tiempo transcurrido "+horas+" Horas " + minutos + " minutos " + segundos + " segundos");
+        
     }
         
     

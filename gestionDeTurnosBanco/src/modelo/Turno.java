@@ -117,6 +117,7 @@ public class Turno {
     public void crearTurno(){
     Conexion c = new Conexion();
     c.ejecutar("insert into turno (cc_cliente,tipo_tramite,numero,letra,estado,hora_solicitud,prioridad)values('"+usuario.getCedula()+ "','" + tipo_tramite + "'," +numero+",'"+letra+"','"+estado+"','"+hora_solicitud+ "','" + prioridad + "');");
+    c.cerrarSesion();
     
     }
     
@@ -154,6 +155,7 @@ public class Turno {
             }
         }catch(java.sql.SQLException e){
         }
+        c.cerrarSesion();
     }
     // Muestra los datos en el modulo de Caja
     public ArrayList<Turno> listarEnTablaCaja(){
@@ -180,7 +182,7 @@ public class Turno {
             
         } catch (java.sql.SQLException e) {
         }
-        
+        c.cerrarSesion();
         return turnos;        
     }
     // Muestra los turnos en el modulo de Asesor
@@ -206,7 +208,8 @@ public class Turno {
                 turnos.add(t);                
             }
         } catch (java.sql.SQLException e) {
-        }      
+        }
+        c.cerrarSesion();
         return turnos;        
     }
     
@@ -214,6 +217,13 @@ public class Turno {
     public void actualizarEstadoTurno(){
         Conexion c = new Conexion();
         c.ejecutar("UPDATE turno SET estado = '"+ this.estado + "' WHERE id_turno="+this.id_turno);
+        c.cerrarSesion();
+    }
+    
+    public void actualizarTramite(){
+        Conexion c = new Conexion();
+        c.ejecutar("UPDATE turno SET tipo_tramite = '"+ this.tipo_tramite + "' WHERE id_turno="+this.id_turno);
+        c.cerrarSesion();
     }
     
     // Nos retorna un estado de cualquier turno cuando sea necesario
@@ -229,8 +239,29 @@ public class Turno {
             }        
         } catch (java.sql.SQLException e) {
         }
-
+        
+        c.cerrarSesion();
         return estadoTurno;
+    }
+    public int calcularPromedio(){
+        Conexion c = new Conexion();
+        int promedio = 0;
+        ArrayList<Integer> tiempos = new ArrayList<>();
+        String sql = "SELECT tiempo_espera FROM turno WHERE tiempo_espera != null;";
+        ResultSet rs = c.ejecutarConsulta(sql);
+        int count = 0;
+        
+        try {
+            while(rs.next()){
+                promedio = rs.getInt("tiempo_espera");
+                tiempos.add(promedio);
+                count++;
+            }        
+        } catch (java.sql.SQLException e) {
+        }
+        
+        
+        return promedio;
     }
     
 

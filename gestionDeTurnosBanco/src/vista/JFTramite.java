@@ -158,7 +158,7 @@ public class JFTramite extends javax.swing.JFrame {
         // TODO add your handling code here:
         JFUsuario newframe = new JFUsuario();
         Turno turnito = new Turno();
-        turnito = ct.crearTurno(user);
+        ct.crearTurno(user);
         cs.sucursalSeleccionada(user);
         System.out.println(turnito.getLetra()+ Integer.toString(turnito.getNumero()));
         

@@ -64,13 +64,14 @@ public class Usuario {
     public void crearUsuario(){
         Conexion c = new Conexion();
         c.ejecutar("insert into usuario (cedula,telefono,prioridad)values('"+cedula+ "','" + telefono + "','" +prioridad+"');");
-    
+        c.cerrarSesion();
     }
     
     public void actualizarIDUsuario(int id_sucursal, String cedulau){
         Conexion c = new Conexion();
         String sql = "UPDATE usuario SET sucursal_id = " +id_sucursal+  " where cedula = '" + cedulau + "'";
         c.ejecutar(sql);
+        c.cerrarSesion();
     }
     
     

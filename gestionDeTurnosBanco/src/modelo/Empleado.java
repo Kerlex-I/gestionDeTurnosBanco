@@ -4,6 +4,7 @@
  */
 package modelo;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 /**
  * @author elker
  */
@@ -65,6 +66,44 @@ public class Empleado {
 
     public void setSucursal(int sucursal) {
         this.sucursal = sucursal;
+    }
+    
+    public void registrarEmpleado(){
+        Conexion c = new Conexion();
+        c.ejecutar("insert into empleado (nombre, contrasena, modulo, sucursal, credencial) values('"+this.nombre+"','"+this.contrasena+"',"+this.modulo+"," + this.sucursal + ",'"+this.credencial+"');");
+        c.cerrarSesion();
+    }
+
+    public void eliminarEmpleado(){
+        Conexion c = new Conexion();
+        c.ejecutar("delete from empleado where credencial='"+this.credencial + "'");
+        c.cerrarSesion();
+    }
+
+    public void actualizarEmpleado(){
+        Conexion c = new Conexion();
+        c.ejecutar("update empleado set nombre ='"+this.nombre+"', contrasena='"+this.contrasena+"',modulo ="+this.modulo+",sucursal ="+this.sucursal + " where credencial='"+this.credencial+"'");
+        c.cerrarSesion();
+    }
+    
+    public Empleado buscarEmpleado(String credenciall){
+        String sql = "SELECT * FROM empleado WHERE credencial = '" + credenciall +"'";
+        Empleado empleado = new Empleado();
+        Conexion c = new Conexion();
+        ResultSet rs = c.ejecutarConsulta(sql);
+        try {
+            while(rs.next()){                 
+                empleado.setNombre(rs.getString("nombre"));
+                empleado.setContrasena(rs.getString("contrasena"));
+                empleado.setModulo(rs.getInt("modulo"));
+                empleado.setSucursal(rs.getInt("sucursal"));
+                empleado.setCredencial(rs.getString("credencial"));
+                return empleado;
+            }
+        } catch (java.sql.SQLException e) {
+        }
+        c.cerrarSesion();
+        return null;
     }
     
     public Empleado encontrarEmpleado(String identificacion, String contrasena){
